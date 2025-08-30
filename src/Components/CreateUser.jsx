@@ -1,7 +1,6 @@
 import axios from "axios";
-import React, { useEffect } from "react";
-import { useState } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Loading } from "./Loading";
 
 const CreateUser = () => {
@@ -12,88 +11,90 @@ const CreateUser = () => {
 
   const navigate = useNavigate();
 
-  const UserCreate = async (e) => {
+  const handleCreateUser = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const newUser = { name, email, phone };
+
     try {
       const res = await axios.post(
         "https://jsonplaceholder.typicode.com/users",
         newUser
       );
       alert("User Created Successfully ✅");
-
       console.log("User Created Successfully", res.data);
-      navigate("/");
+      navigate("/Fetch_User"); // navigate to fetch user list after creation
     } catch (err) {
-      console.log("Error to print", err.message);
+      console.log("Error:", err.message);
+      alert("Failed to create user!");
+    } finally {
+      setLoading(false);
     }
   };
 
-  if (loading) {
-    return <Loading />;
-  }
-
   return (
     <>
-      <h1 className="text-center font-bold text-2xl mt-20">
-        Creating New User
-      </h1>
+      <h1 className="text-center font-bold text-3xl mt-12">Create New User</h1>
 
-      <div className="flex  p-5 items-center justify-center mt-20">
+      <div className="flex justify-center items-center mt-12 px-4">
         <form
-          onSubmit={UserCreate}
-    className="flex justify-center p-20 bg-gray-200 flex-col gap-6 rounded-md shadow-xl min-w-3 mx-auto"
-       >
-          <div className="  flex  justify-center  items-center gap-2 ">
-            <label className="text-md font-bold">Name:</label>
+          onSubmit={handleCreateUser}
+          className="w-full max-w-md bg-gray-100 p-8 rounded-xl shadow-lg flex flex-col gap-6"
+        >
+
+          {/* Name Input */}
+          <div className="flex flex-col">
+            <label className="text-md font-semibold mb-1">Name:</label>
             <input
-              className="p-2 bg-gray-300 rounded-sm"
               type="text"
-              placeholder="Enter your Name"
+              placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
+              className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
-          <div className=" flex  justify-center  items-center gap-2">
-            <label className="text-md font-bold">Email:</label>
+          {/* Email Input */}
+          <div className="flex flex-col">
+            <label className="text-md font-semibold mb-1">Email:</label>
             <input
-              className="p-2 bg-gray-300 rounded-sm "
               type="email"
-              placeholder="Enter your Email"
+              placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              min={0}
+              className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
-          <div className=" flex  justify-center  items-center gap-2">
-            <label className="text-md font-bold">Phone No:</label>
+
+          {/* Phone Input */}
+          <div className="flex flex-col">
+            <label className="text-md font-semibold mb-1">Phone No:</label>
             <input
-              className="p-2 bg-gray-300 rounded-sm "
               type="text"
-              placeholder="Enter your Phone No"
+              placeholder="Enter your phone number"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(e.target.value.replace(/\D/, ""))} // only digits
               required
-              min={0}
               maxLength={10}
+              className="p-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
+          {/* Submit Button */}
           <button
             type="submit"
-            className="p-2 rounded-md bg-blue-500 text-md font-semibold hover:bg-blue-400 cursor-pointer mt-10"
+            disabled={loading}
+            className={`p-2 rounded-md text-white font-semibold transition-colors duration-200 ${
+              loading
+                ? "bg-blue-300 cursor-not-allowed"
+                : "bg-blue-500 hover:bg-blue-600"
+            }`}
           >
-            {/* {
-loading?<Loading/>:""
-
-            } */}
-            Create Account
+            {loading ? "Creating..." : "Create User"}
           </button>
         </form>
       </div>

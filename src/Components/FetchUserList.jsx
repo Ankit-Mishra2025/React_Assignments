@@ -4,16 +4,14 @@ import { Loading } from "./Loading";
 import { Link } from "react-router-dom";
 
 const FetchUserList = () => {
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const UserFetch = async () => {
+  const fetchUsers = async () => {
     try {
-      const res = await axios.get("https://jsonplaceholder.typicode.com/users"); // It will fetch the data from API
-      console.log(res); 
-
-      setUser(res.data);
+      const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+      setUsers(res.data);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -22,44 +20,39 @@ const FetchUserList = () => {
   };
 
   useEffect(() => {
-    UserFetch();
+    fetchUsers();
   }, []);
-  
 
-  // Loading will run before data laoding from API
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (error) {
-    return <p style={{ color: "red" }}>Error: {error}</p>;
-  }
+  if (loading) return <Loading />;
+  if (error)
+    return <p className="text-red-500 text-center mt-5">Error: {error}</p>;
 
   return (
-    <>
-      <div className="mx-auto p-10">
-        <h1 className="text-2xl text-center font-semibold">List of All Fetched Users</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-stone-200 p-5 rounded -md mt-3 w-full">
-          {user.map((users, index) => (
-            <div
-              key={index}
-              className="border shadow-emerald-50 rounded-xl  bg-white hover:shadow-lg transition p-3 hover:border-orange-50 cursor-pointer"
-            >
-              <h2 className="text-md font-semibold">Name: {users.name}</h2>
-              <p>Email: {users.email}</p>
-              <p>Phone No: {users.phone}</p>
+    <div className="max-w-7xl mx-auto p-4 sm:p-6 md:p-8">
+      <h1 className="text-3xl font-bold text-center mb-8">List of All Users</h1>
 
-              <Link
-                to={`/edit/${users.id}`}
-                className="bg-blue-300 p-1 rounded-md mt-10 float-right font-semibold hover:bg-sky-500 text-sm  "
-              >
-                Edit Details
-              </Link>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {users.map((user) => (
+          <div
+            key={user.id}
+            className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg border border-gray-200 transition-all duration-300 flex flex-col justify-between"
+          >
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold mb-1">Name: {user.name}</h2>
+              <p className="text-gray-600 text-sm mb-1">Email: {user.email}</p>
+              <p className="text-gray-600 text-sm">Phone: {user.phone}</p>
             </div>
-          ))}
-        </div>
+
+            <Link
+              to={`/edit/${user.id}`}
+              className="self-end bg-blue-400 hover:bg-sky-500 text-white px-3 py-1 rounded-md font-medium transition-colors duration-200 text-sm text-center"
+            >
+              Edit Details
+            </Link>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 
