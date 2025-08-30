@@ -37,13 +37,15 @@ const CreateUser = () => {
 
   return (
     <>
-      <h1 className="text-center font-bold text-2xl mt-10">Creating New User</h1>
+      <h1 className="text-center font-bold text-2xl mt-20">
+        Creating New User
+      </h1>
 
-      <div className="flex mx-auto p-5 items-center justify-center mt-20">
+      <div className="flex  p-5 items-center justify-center mt-20">
         <form
           onSubmit={UserCreate}
-          className="flex justify-center p-20 bg-gray-200 flex-col gap-6 rounded-md shadow-xl"
-        >
+    className="flex justify-center p-20 bg-gray-200 flex-col gap-6 rounded-md shadow-xl min-w-3 mx-auto"
+       >
           <div className="  flex  justify-center  items-center gap-2 ">
             <label className="text-md font-bold">Name:</label>
             <input
@@ -78,8 +80,8 @@ const CreateUser = () => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               required
-              min={0} 
-             maxLength={10}
+              min={0}
+              maxLength={10}
             />
           </div>
 
