@@ -12,10 +12,10 @@ const App = () => {
     <div>
 <nav className='w-full flex items-center justify-center gap-20 rounded-md p-3'>
   <Link to="/"></Link>
-  <Link to="/Fetch_User" className='bg-amber-500 p-2 rounded-md'>Fetch User</Link>
-  <Link to="/Create_User" className='bg-emerald-300 p-2 rounded-md'>Create User</Link>
+  <Link to="/Fetch_User" className='bg-amber-500 p-2 rounded-md font-semibold hover:bg-amber-400'>Fetch User</Link>
+  <Link to="/Create_User" className='bg-emerald-300 p-2 rounded-md font-semibold hover:bg-emerald-400'>Create User</Link>
  
-  <Link to="/Delete_User" className='bg-cyan-500 p-2 rounded-md'>Delete User</Link>
+  <Link to="/Delete_User" className='bg-cyan-500 p-2 rounded-md font-semibold hover:bg-cyan-300'>Delete User</Link>
 </nav>
 
 <Routes>

@@ -50,7 +50,7 @@ const FetchUserList = () => {
 
               <Link
                 to={`/edit/${users.id}`}
-                className="bg-sky-200  p-2 rounded-md mt-10 float-right font-semibold "
+                className="bg-sky-200  p-2 rounded-md mt-10 float-right font-semibold hover:bg-sky-500 "
               >
                 Edit Details
               </Link>

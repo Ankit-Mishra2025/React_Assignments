@@ -15,6 +15,7 @@ const EditUser = () => {
   const { id } = useParams(); // To get user id dyanamically
 console.log("id is",id);
 
+
     // Will run after the component render to pre-filled the data ✅
   useEffect(() => { 
 
@@ -43,7 +44,7 @@ console.log(res.data);
 
 
 
-  
+
   //  Handle the update on updating
 
   const handleUpdate = async (e) => {

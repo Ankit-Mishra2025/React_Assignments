@@ -34,7 +34,7 @@ const DeleteUser = () => {
       // Remove user from UI
       setUsers(users.filter((user) => user.id !== id));
       alert("User deleted successfully! ✅");
-      
+
     } catch (err) {
       console.log(err.message);
       alert("Error deleting user");
@@ -62,14 +62,14 @@ const DeleteUser = () => {
             <div className="flex gap-2">
               <Link
                 to={`/edit/${user.id}`}
-                className="bg-fuchsia-500 p-2 rounded-md text-white"
+                className="bg-fuchsia-500 p-2 rounded-md text-white hover:bg-fuchsia-600"
               >
                 Edit
               </Link>
 
               <button
                 onClick={() => handleDelete(user.id)}
-                className="bg-red-500 p-2 rounded-md text-white"
+                className="bg-red-500 p-2 rounded-md text-white hover:bg-red-400 cursor-pointer"
               >
                 Delete
               </button>
