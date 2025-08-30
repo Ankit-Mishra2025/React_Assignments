@@ -37,12 +37,12 @@ const CreateUser = () => {
 
   return (
     <>
-      <h1 className="text-center font-bold text-xl mt-10">Creating New User</h1>
+      <h1 className="text-center font-bold text-2xl mt-10">Creating New User</h1>
 
       <div className="flex mx-auto p-5 items-center justify-center mt-20">
         <form
           onSubmit={UserCreate}
-          className="flex justify-center p-20 bg-gray-200 flex-col gap-5 rounded-md"
+          className="flex justify-center p-20 bg-gray-200 flex-col gap-6 rounded-md shadow-xl"
         >
           <div className="  flex  justify-center  items-center gap-2 ">
             <label className="text-md font-bold">Name:</label>
@@ -59,7 +59,7 @@ const CreateUser = () => {
           <div className=" flex  justify-center  items-center gap-2">
             <label className="text-md font-bold">Email:</label>
             <input
-              className="p-2 bg-gray-300 rounded-sm"
+              className="p-2 bg-gray-300 rounded-sm "
               type="email"
               placeholder="Enter your Email"
               value={email}
@@ -85,13 +85,13 @@ const CreateUser = () => {
 
           <button
             type="submit"
-            className="p-2 rounded-md bg-blue-600 text-md font-semibold hover:bg-blue-700 cursor-pointer"
+            className="p-2 rounded-md bg-blue-500 text-md font-semibold hover:bg-blue-400 cursor-pointer mt-10"
           >
             {/* {
 loading?<Loading/>:""
 
             } */}
-            Create User
+            Create Account
           </button>
         </form>
       </div>

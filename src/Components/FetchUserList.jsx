@@ -38,19 +38,20 @@ const FetchUserList = () => {
   return (
     <>
       <div className="mx-auto p-10">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <h1 className="text-2xl text-center font-semibold">List of All Fetched Users</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 bg-stone-200 p-5 rounded -md mt-3 w-full">
           {user.map((users, index) => (
             <div
               key={index}
-              className="border shadow-emerald-50 rounded-xl  bg-white hover:shadow-lg transition p-3"
+              className="border shadow-emerald-50 rounded-xl  bg-white hover:shadow-lg transition p-3 hover:border-orange-50 cursor-pointer"
             >
-              <h2 className="">Name: {users.name}</h2>
+              <h2 className="text-md font-semibold">Name: {users.name}</h2>
               <p>Email: {users.email}</p>
               <p>Phone No: {users.phone}</p>
 
               <Link
                 to={`/edit/${users.id}`}
-                className="bg-sky-200  p-2 rounded-md mt-10 float-right font-semibold hover:bg-sky-500 "
+                className="bg-blue-300 p-1 rounded-md mt-10 float-right font-semibold hover:bg-sky-500 text-sm  "
               >
                 Edit Details
               </Link>

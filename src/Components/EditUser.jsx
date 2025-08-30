@@ -57,9 +57,11 @@ console.log(res.data);
         `https://jsonplaceholder.typicode.com/users/${id}`,
         user
       );
-      alert("User Update Successfully ✅")
+      alert("User Updated Successfully ✅")
       console.log("Update Data", res.data);
-      navigate("/");
+
+      navigate("/Fetch_User");
+      
     } catch (error) {
       console.log(error.message);
     }
